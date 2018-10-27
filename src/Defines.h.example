@@ -1,0 +1,13 @@
+
+#define PIN_DHT11 5
+#define PIN_RELAY 4
+
+#define ROUTER_SSID "router-name"
+#define ROUTER_PASSWORD "router-password"
+
+#define TIME_API_LINK "http://time.com"
+
+#define WAKEUP_TIME "08:00"
+#define RELAY_RUN_TIME 3600 // 60min
+
+#define ONE_DAY 24 * 60 * 60
