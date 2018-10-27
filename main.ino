@@ -38,7 +38,7 @@ void handleRelayState() {
   uint8_t humidity = dht.getHumidity();
   uint8_t temperature = dht.getTemperature();
 
-  if (temperature > 22) {
+  if (temperature > 20) {
     relay.turnOff();
   } else if (temperature == temperature) { // is not NaN
     relay.turnOn();
@@ -49,9 +49,17 @@ void handleRelayState() {
 void delayUntilNeeded(unsigned &time) {
   unsigned delay = (wakeupHigher - RELAY_RUN_TIME) - time;
 
-  Serial.print("Delaying for: ");
+  Serial.print("Sleeping for: ");
   Serial.print(delay);
   Serial.println(" seconds");
+
+  if (delay > 3600) {
+    ESP.deepSleep(MICROSECONDS_IN_ONE_HOUR);
+  } else {
+    long unsigned temp = Time::secondsToMicroseconds(delay);
+
+    ESP.deepSleep(temp);
+  }
 }
 
 void loop()
@@ -67,6 +75,5 @@ void loop()
   } else {
     relay.turnOff();
     delayUntilNeeded(currentTime);
-    delay(5000);
   }
 }

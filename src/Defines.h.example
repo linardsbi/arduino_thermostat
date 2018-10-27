@@ -11,3 +11,4 @@
 #define RELAY_RUN_TIME 3600 // 60min
 
 #define ONE_DAY 24 * 60 * 60
+#define MICROSECONDS_IN_ONE_HOUR ((long)60 * 60 * 1000 * 1000)
